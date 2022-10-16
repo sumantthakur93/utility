@@ -1,15 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import { BaseError } from "./base-error";
 
-export class BadRequest extends BaseError {
+export class NotFound extends BaseError {
   /**
    * @message {string} The error message
    * @description {string} The error description
    */
   constructor(message: string, desc?: string) {
-    const description = desc ?? `Invalid request: ${message}`;
+    const description = desc ?? `Not found: ${message}`;
     super({
-      httpCode: StatusCodes.BAD_REQUEST,
+      httpCode: StatusCodes.NOT_FOUND,
       isOperational: true,
       message,
       description,

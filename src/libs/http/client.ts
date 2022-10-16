@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { uuid } from "uuidv4";
+import { IHttpClient } from "./types";
 
 const DEFAULT_HEADERS = {
   X_CLIENT_ID: uuid(),

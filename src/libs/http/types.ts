@@ -1,9 +1,9 @@
-interface IRetryConfig {
+export interface IRetryConfig {
   retries: number;
   delay: () => number;
 }
 
-interface IHttpClient {
+export interface IHttpClient {
   runWhen?: () => void;
   retry?: IRetryConfig;
   headers?: Record<string, string>;
