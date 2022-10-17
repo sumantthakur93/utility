@@ -2,7 +2,7 @@ import { createLogger, format, transports } from "winston";
 const { combine, splat, timestamp, printf } = format;
 
 const formatter = printf(({ level, message, timestamp, ...metadata }) => {
-  let msg = `${timestamp} [${level}] : ${message} `;
+  let msg = `${timestamp} [${level}] : ${message}`;
   if (metadata) {
     msg += JSON.stringify(metadata);
   }
