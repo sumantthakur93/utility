@@ -3,7 +3,6 @@ import { HttpClient } from "../client";
 import nock from "nock";
 import * as util from "../retry-condition";
 
-jest.setTimeout(100000000);
 describe("HttpClient", () => {
   afterEach(() => {
     nock.cleanAll();
