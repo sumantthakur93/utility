@@ -13,4 +13,5 @@ export const setEnvironment = (env: Environment) => {
   logger = new BaseLogger();
 };
 
+export * from "./types";
 export default logger;

@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
-import logger from "../logger";
-import { AxiosRetryConfig, AxiosStateConfig } from "./types";
+import { ILogger } from "libs/logger/types";
+import { AxiosLogger, AxiosRetryConfig, AxiosStateConfig } from "./types";
 
 export function isNetworkError(error: AxiosError) {
   return (
@@ -80,12 +80,22 @@ const denyList = new Set([
   "HOSTNAME_MISMATCH",
 ]);
 
-const isRetryAllowed = (error: AxiosError<unknown, unknown>) => {
+const isRetryAllowed = (error: AxiosError<unknown>) => {
   const errCode = error.code;
   if (!errCode) throw new Error(`No error code received: ${error.message}`);
   return !denyList.has(errCode);
 };
 
-export const onRetry = (retryCount: number, config: AxiosStateConfig) => {
+export const onRetry = (
+  retryCount: number,
+  config: AxiosStateConfig,
+  logger: AxiosLogger | ILogger
+) => {
   logger.info(`Retry count - ${retryCount} for endpoint ${config.url}`);
+};
+
+export const getDelay = (retryNumber = 0) => {
+  const delay = Math.pow(2, retryNumber) * 100;
+  const randomSum = delay * 0.2 * Math.random(); // 0-20% of the delay
+  return delay + randomSum;
 };
