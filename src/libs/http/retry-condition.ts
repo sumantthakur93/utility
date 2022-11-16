@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { ILogger } from "libs/logger/types";
+import { ILogger } from "../logger/types";
 import { AxiosLogger, AxiosRetryConfig, AxiosStateConfig } from "./types";
 
 export function isNetworkError(error: AxiosError) {
